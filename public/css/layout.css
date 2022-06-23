@@ -264,7 +264,7 @@ ul#nav li.current a { color: #2cb5fa; }
 .education, .work {
    margin-bottom: 48px;
    padding-bottom: 24px;
-   border-bottom: 1px solid #E8E8E8;
+   border-bottom: 1px solid #2cb5fa;
 }
 #resume .info {
    font: 16px/24px 'librebaskerville-italic', serif;
@@ -295,13 +295,13 @@ ul#nav li.current a { color: #2cb5fa; }
   	margin-top: 36px;
    list-style: none;
 }
-.bars li {
+/* .bars li {
    position: relative;
   	margin-bottom: 60px;
   	background: #ccc;
   	height: 42px;
   	border-radius: 3px;
-}
+} */
 .bars li em {
 	font: 15px 'opensans-bold', sans-serif;
    color: #313131;
