@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+/**
+ * Portfolio class that displays project data
+ */
 class Portfolio extends Component {
   render() {
 

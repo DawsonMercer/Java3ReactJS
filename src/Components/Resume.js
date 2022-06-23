@@ -1,11 +1,18 @@
 import React, { Component, useEffect, useState } from 'react';
 
-
+/**
+ * Resume function that handles education, experience, and skills
+ * 
+ * @returns 
+ */
 export function Resume(){
   const [educationArray, setEducationArray] = useState(null);
   const [ experienceArray, setExperienceArray] = useState(null);
   const [ skillsArray, setSkillsArray] = useState(null);
 
+  /**
+   * fetch experience data
+   */
   useEffect( () =>{
     const fetchData = async ()=>{
       const result = await fetch("/api/v1/experience");
@@ -16,6 +23,9 @@ export function Resume(){
     fetchData();
   }, [])
 
+  /**
+   * fetch educations data
+   */
   useEffect( () =>{
     const fetchData = async ()=>{
       const result = await fetch("/api/v1/educations");
@@ -27,6 +37,9 @@ export function Resume(){
     fetchData();
   }, [])
 
+  /**
+   * fetch skills data
+   */
   useEffect( () =>{
     const fetchData = async ()=>{
       const result = await fetch("/api/v1/skills");
@@ -36,74 +49,22 @@ export function Resume(){
     }
     fetchData();
   }, [])
-  let education = "education"
-  let experience = "experience"
-  let work = "work";
-  let skills = "skills";
-  let skillmessage = "SM";
+ 
 
-
-  
-  // _education = () => () => {
-  //   const [educationArray, setEducationArray] = useState("Pineapples");
-
-  //   return <div>{ educationArray }</div>
-  // }
-
-  // _experience = () => () => {
-  //   const [ experienceArray, setExperienceArray] = useState("Pineapples2");
-
-  //   return <div>{ experienceArray }</div>
-  // }
-  // _skills = () => () => {
-  //   const [ skillsArray, setSkillsArray] = useState("Pineapples3");
-
-  //   return <div>{ skillsArray }</div>
-  // }
-
-  
-  //   const EducationHook = this._education();
-  //   const ExperienceHook = this._experience();
-  //   const SkillsHook = this._skills();
-
-    
-    
-
-    // if(this.props.data){
-    //   var skillmessage = this.props.data.skillmessage;
-    //   var education = this.props.data.education.map(function(education){
-    //     return <div key={education.school}><h3>{education.school}</h3>
-    //     <p className="info">{education.degree} <span>&bull;</span><em className="date">{education.graduated}</em></p>
-    //     <p>{education.description}</p></div>
-    //   })
-    //   var work = this.props.data.work.map(function(work){
-    //     return <div key={work.company}><h3>{work.company}</h3>
-    //         <p className="info">{work.title}<span>&bull;</span> <em className="date">{work.years}</em></p>
-    //         <p>{work.description}</p>
-    //     </div>
-    //   })
-    //   var skills = this.props.data.skills.map(function(skills){
-    //     var className = 'bar-expand '+skills.name.toLowerCase();
-    //     return <li key={skills.name}><span style={{width:skills.level}}className={className}></span><em>{skills.name}</em></li>
-    //   })
-    // }
-
+  /**
+   * if no data in the arrays, return null
+   * @return null
+   */
     if (educationArray === null || experienceArray == null || skillsArray == null){
-      return (<h1>no data</h1>);
+      return (<h1>No data - Please Start SpringBoot</h1>);
     }
     console.log(educationArray);
-    // let educationObjects = educationArray.map( ())
+    /**
+     * map data to html elements
+     * @return experience, education, and skills
+     */
     return (
       <>
-
-      <h1>{education}</h1>
-      <h1>{experience}</h1>
-      <h1>{skills}</h1>
-      
-
-
-      {/* <h1>title {educationArray.title}</h1> */}
-      
       <section id="resume">
       <div className="row education">
          <div className="three columns header-col">
@@ -116,8 +77,8 @@ export function Resume(){
                {educationArray.map((innerObject, i)=>{
                    return (<div key={i}><h3>{innerObject.title}</h3>
                    <p className="info">{innerObject.institutionName} <span>&bull;</span><em className="date">{innerObject.gradYear}</em></p>
-                   <p>Start Date: {innerObject.startDate}</p>
-                   <p>End Date: {innerObject.endDate}</p>
+                   <p>Start Date: {innerObject.startDate} End Date: {innerObject.endDate}</p>
+                   <p></p>
                    <p>{innerObject.abbreviation}</p>
                    </div>
                  );})}
@@ -160,7 +121,7 @@ export function Resume(){
 				<div className="bars">
 				   <ul className="skills">
 					  {skillsArray.map((skill, i)=>{
-              return <li key={i}><em>{skill.name}</em></li>
+              return <li key={i}><em>{skill.name} - {skill.type}</em></li>
 
             })}
 					</ul>
